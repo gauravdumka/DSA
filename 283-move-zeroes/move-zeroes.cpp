@@ -11,6 +11,7 @@ public:
             }
         }
         if(j==-1)return;
+        //loop can start with j and j+1 both
         for(int i=j;i<n;i++){
             if(nums[i]!=0){
                 swap(nums[i],nums[j]);
