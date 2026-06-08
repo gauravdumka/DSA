@@ -8,9 +8,12 @@ public:
                 count++;
                 maxi=max(maxi,count);
             }
-            // use ele without any condition
+            // use else without any condition in cpp
             else{
+                // wrong---> will not update at last pair [1,1,0,1,1,1]
+                //maxi = max(maxi , count);
                 count=0;
+
             }
         }
         return maxi;
