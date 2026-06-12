@@ -11,6 +11,8 @@ public:
             if(nums[low] == nums[mid] && nums[mid] == nums[high]) {
                 low++;
                 high--;
+                // continue is very imp because without it below conditions will execute
+                // wrong for nums=[1] low,mid,high=0-->low=1,high=-1 which is wrong
                 continue;
             }
             if(nums[low]<=nums[mid]){
@@ -21,7 +23,7 @@ public:
                     low=mid+1;
                 }
             }
-            else{
+            else if(nums[mid]<=nums[high]){
                 if(target>=nums[mid] && target<=nums[high]){
                     low=mid+1;
                 }
