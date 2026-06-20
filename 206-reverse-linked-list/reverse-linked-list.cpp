@@ -11,14 +11,28 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode*prev=nullptr;
-        ListNode*store=nullptr;
-        while(head){
-            store=head->next;
-            head->next=prev;
-            prev=head;
-            head=store;
+        // ListNode*prev=nullptr;
+        // ListNode*store=nullptr;
+        // while(head){
+        //     store=head->next;
+        //     head->next=prev;
+        //     prev=head;
+        //     head=store;
+        // }
+        // return prev;
+        // using recurrsion
+
+        ListNode* newhead=reverse(head);
+        return newhead;
+    }
+    ListNode* reverse(ListNode* head){
+        if(head==nullptr || head->next==nullptr){
+            return head;
         }
-        return prev;
+        ListNode* newhead= reverse(head->next);
+        ListNode* front=head->next;
+        front->next=head;
+        head->next=nullptr;
+        return newhead;
     }
 };
