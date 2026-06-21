@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
+        //brutte force = take all odd in a list in 2 iteration and take all even in 2 iteration and fill the ll with the list elements in 3 iteration whoch takes a timw complexity of O(N) due to the list
         if(head == nullptr || head->next == nullptr)
             return head;
         ListNode*odd=head;
