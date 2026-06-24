@@ -45,15 +45,18 @@ public:
                 //after reversing conditions
             if(temp==head){
                 head=knode;
-                temp->next=nextnode;
-                previous=temp;
-                temp=nextnode;    
+                // temp->next=nextnode;
+                // previous=temp;
+                // temp=nextnode;    
             }else{
                 previous->next=knode;
-                previous=temp;
-                temp->next=nextnode;
-                temp=nextnode;
+                // previous=temp;
+                // temp->next=nextnode;
+                // temp=nextnode;
             }  
+            temp->next=nextnode;
+                previous=temp;
+                temp=nextnode;
         }
         return head;
     }
