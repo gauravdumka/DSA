@@ -1,6 +1,6 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
+    double myPow(double x, long n) {
         // double ans =1;
         // long long m=n;
         // if(m<0) m=-1*m;
@@ -16,6 +16,10 @@ public:
         // }
         // if(n<0)return 1/ans;
         // return ans;
+
+                            // recursive ans
+
+
         double result=1;
         long long m=n;
         if(m<0)m=-1*m;
