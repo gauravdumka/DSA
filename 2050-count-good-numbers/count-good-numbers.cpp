@@ -9,8 +9,10 @@ public:
             result=(result*x)%MOD;
             n=n-1;
         }
-        half=mypow(x,n/2);
-        result=result*(half*half)%MOD;
+        // half=mypow(x,n/2);
+        // result=result*(half*half)%MOD;
+        // below method is also correct
+        result=result*mypow(1LL*x*x%MOD,n/2)% MOD;
         return result%MOD;
     }
     int countGoodNumbers(long long n) {
