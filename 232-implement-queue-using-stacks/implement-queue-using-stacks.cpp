@@ -31,6 +31,9 @@ public:
         return(s1.size()==0);
     }
 };
+// NOTE  BY GAURAV => there exists one more approach in which you perform operations on pop and top functions
+
+
 
 /**
  * Your MyQueue object will be instantiated and called as such:
