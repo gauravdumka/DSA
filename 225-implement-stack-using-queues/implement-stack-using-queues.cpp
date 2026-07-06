@@ -1,6 +1,7 @@
 class MyStack {
 public:
     queue<int> q;
+    //int size=0;
     int size;
     MyStack() {
         size=0;
