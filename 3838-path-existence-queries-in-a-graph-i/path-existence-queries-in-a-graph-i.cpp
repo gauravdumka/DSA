@@ -16,11 +16,12 @@ public:
         for(int i=0;i<queries.size();i++){
             int u=queries[i][0];
             int v=queries[i][1];
-            if(group[u]==group[v]){
-                ans.push_back(true);
-            }else{
-                ans.push_back(false);
-            }
+            // if(group[u]==group[v]){
+            //     ans.push_back(true);
+            // }else{
+            //     ans.push_back(false);
+            // }
+            ans.push_back((group[u]==group[v]));
         }
         return ans;
     }
