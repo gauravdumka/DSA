@@ -1,3 +1,5 @@
+//////////// use array instead of map for better space complexity
+
 class Solution {
 public:
     int numberOfSubstrings(string s) {
