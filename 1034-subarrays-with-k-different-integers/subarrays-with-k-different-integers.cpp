@@ -1,7 +1,7 @@
 class Solution {
 public: 
     int lessOrEqual(vector<int>nums, int k){
-        int l=0;int r=0; int cnt=0; map<int,int>mpp;
+        int l=0;int r=0; int cnt=0; unordered_map<int,int>mpp;
         while(r<nums.size()){
             mpp[nums[r]]++;
             while(mpp.size()>k){
