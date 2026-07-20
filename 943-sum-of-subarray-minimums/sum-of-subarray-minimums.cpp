@@ -1,41 +1,48 @@
 class Solution {
 public:
+    vector<int>nse_find(vector<int>arr){
+        int n=arr.size();
+        stack<int>st; vector<int>nse(n);
+        for(int i=arr.size()-1; i>=0; i--){
+            while(!st.empty() && arr[st.top()]>=arr[i]){
+                st.pop();
+            }
+            if(st.empty()){
+                nse[i]=n;
+            }else{
+                nse[i]=st.top();
+            }
+            st.push(i);
+        }
+        return nse;
+    }
+    vector<int>psee_find(vector<int>arr){
+        int n=arr.size();
+        stack<int>st;
+        vector<int>psee(n);
+        for(int i =0; i<arr.size();i++){
+            while(!st.empty() && arr[st.top()]>arr[i]){
+                st.pop();
+            }
+            if(st.empty()){
+                psee[i]=-1;
+            }else{
+                psee[i]=st.top();
+            }
+            st.push(i);
+        }
+        return psee;
+    }
     int sumSubarrayMins(vector<int>& arr) {
-        int n = arr.size();
-        const int MOD = 1e9 + 7;
+        int total=0; int mod=(1e9)+7;
+        vector<int>nse=nse_find(arr);
+        vector<int>psee=psee_find(arr);
+        for(int i=0;i<arr.size();i++){
+            int left=i-psee[i];
+            int right= nse[i]-i;
+            total = (total + (1LL * left * right * arr[i]) % mod) % mod;
 
-        vector<int> ple(n), nle(n);
-        stack<int> st;
-
-        // Previous Less Element
-        for (int i = 0; i < n; i++) {
-            while (!st.empty() && arr[st.top()] > arr[i])
-                st.pop();
-
-            ple[i] = st.empty() ? -1 : st.top();
-            st.push(i);
         }
-
-        while (!st.empty()) st.pop();
-
-        // Next Less or Equal Element
-        for (int i = n - 1; i >= 0; i--) {
-            while (!st.empty() && arr[st.top()] >= arr[i])
-                st.pop();
-
-            nle[i] = st.empty() ? n : st.top();
-            st.push(i);
-        }
-
-        long long ans = 0;
-
-        for (int i = 0; i < n; i++) {
-            long long left = i - ple[i];
-            long long right = nle[i] - i;
-
-            ans = (ans + (left * right % MOD) * arr[i]) % MOD;
-        }
-
-        return ans;
+        return total;
     }
 };
