@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int>nse_find(vector<int>arr){
+    vector<int>nse_find(vector<int>&arr){
         int n=arr.size();
         stack<int>st; vector<int>nse(n);
         for(int i=arr.size()-1; i>=0; i--){
@@ -16,7 +16,7 @@ public:
         }
         return nse;
     }
-    vector<int>psee_find(vector<int>arr){
+    vector<int>psee_find(vector<int>&arr){
         int n=arr.size();
         stack<int>st;
         vector<int>psee(n);
