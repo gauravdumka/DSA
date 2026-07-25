@@ -2,7 +2,7 @@ class StockSpanner {
 public:
     vector<int>prices; stack<int>st;
     StockSpanner() {
-
+        vector<int>prices; stack<int>st;
     }
     
     int next(int price) {
