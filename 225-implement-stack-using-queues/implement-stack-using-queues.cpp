@@ -1,6 +1,6 @@
 class MyStack {
 public:
-    queue<int> q;
+    queue<int> q;queue<int>q2;
     //int size=0;
     int size;
     MyStack() {
@@ -12,6 +12,14 @@ public:
             q.push(q.front());
             q.pop();
         }
+        //     //my approach but more space => can't tell empty
+        // while(!q.empty()){
+        //     q2.push(q.front()); q.pop();
+        // }
+        // q.push(x);
+        // while(!q2.empty()){
+        //     q.push(q2.front()); q2.pop();
+        // }
     }
     
     int pop() {
