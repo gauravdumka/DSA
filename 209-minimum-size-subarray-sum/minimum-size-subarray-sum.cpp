@@ -1,24 +1,19 @@
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
-        // dynamic sliding window
-        long long sum=0;
-        int mini=INT_MAX;
-        int low=0;
-        int high=0;
-        while(high<nums.size()){
-            sum+=nums[high];
-            // int len=high-low+1;
+        int len=INT_MAX;
+        int sum=0;
+        int i=0;
+        int j=0;
+        while(j<nums.size()){
+            sum+=nums[j];
             while(sum>=target){
-                int len=high-low+1;
-                mini=min(mini,len);
-                sum=sum-nums[low];
-                low++;
+                len=min(j-i+1,len);
+                sum-=nums[i];
+                i++;
             }
-            high++;
+            j++;
         }
-        if(mini!=INT_MAX)return mini;
-        else return 0;
-
+        return (len==INT_MAX?0:len);
     }
 };
