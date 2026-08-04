@@ -1,7 +1,7 @@
 class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
-        map<int,int>hash;int i=0; int maxlen =1;
+        unordered_map<int,int>hash;int i=0; int maxlen =1;
         for(int j=0;j<fruits.size();j++){
             hash[fruits[j]]++;
             while(hash.size()>2){
