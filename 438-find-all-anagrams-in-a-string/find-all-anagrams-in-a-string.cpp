@@ -17,13 +17,12 @@ public:
           //// above approach was TLE now the optimal one
 
         
+        vector<int> hash1(26, 0);
+
         int n = s.length();
         int m = p.length();
 
         if (m > n) return {};
-
-        vector<int> hash1(26, 0);
-        vector<int> hash2(26, 0);
 
         // Frequency of p
         for (int i = 0; i < m; i++) {
@@ -31,19 +30,22 @@ public:
         }
 
         // First window
-        for (int i = 0; i < m; i++) {
-            hash2[s[i] - 'a']++;
+        vector<int> hash2(26, 0);
+
+        int i = 0;
+        int j;
+
+        for (j = 0; j < m; j++) {
+            hash2[s[j] - 'a']++;
         }
 
         vector<int> result;
 
-        int i = 0;
-
-        while (i <= n - m) {
+        // Check and slide
+        while (j < n) {
 
             int cnt = 0;
 
-            // Compare hash arrays
             for (int k = 0; k < 26; k++) {
                 if (hash1[k] == hash2[k]) {
                     cnt++;
@@ -54,13 +56,25 @@ public:
                 result.push_back(i);
             }
 
-            // Move window
-            if (i + m < n) {
-                hash2[s[i] - 'a']--;
-                hash2[s[i + m] - 'a']++;
-            }
-
+            // Slide window
+            hash2[s[i] - 'a']--;
             i++;
+
+            hash2[s[j] - 'a']++;
+            j++;
+        }
+
+        // Check the LAST window
+        int cnt = 0;
+
+        for (int k = 0; k < 26; k++) {
+            if (hash1[k] == hash2[k]) {
+                cnt++;
+            }
+        }
+
+        if (cnt == 26) {
+            result.push_back(i);
         }
 
         return result;
