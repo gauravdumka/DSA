@@ -16,30 +16,53 @@ public:
 
           //// above approach was TLE now the optimal one
 
-        vector<int>hash1(26,0);
-        int n=s.length();
-        int m=p.length();
-        for(int i=0;i<p.length();i++){
-            hash1[p[i]-'a']++;
+        
+        int n = s.length();
+        int m = p.length();
+
+        if (m > n) return {};
+
+        vector<int> hash1(26, 0);
+        vector<int> hash2(26, 0);
+
+        // Frequency of p
+        for (int i = 0; i < m; i++) {
+            hash1[p[i] - 'a']++;
         }
-        vector<int>result;
-        int cnt;
-        for(int j=0;j<=n-m;j++){
-            vector<int>hash2(26,0);
-            cnt=0;
-            for(int k=j;k<j+m;k++){
-                hash2[s[k]-'a']++;
-            }
-            for(int i=0;i<26;i++){
-                if(hash1[i]==hash2[i]){
+
+        // First window
+        for (int i = 0; i < m; i++) {
+            hash2[s[i] - 'a']++;
+        }
+
+        vector<int> result;
+
+        int i = 0;
+
+        while (i <= n - m) {
+
+            int cnt = 0;
+
+            // Compare hash arrays
+            for (int k = 0; k < 26; k++) {
+                if (hash1[k] == hash2[k]) {
                     cnt++;
                 }
-                
             }
-            if(cnt==26){
-                result.push_back(j);
+
+            if (cnt == 26) {
+                result.push_back(i);
             }
+
+            // Move window
+            if (i + m < n) {
+                hash2[s[i] - 'a']--;
+                hash2[s[i + m] - 'a']++;
+            }
+
+            i++;
         }
+
         return result;
     }
 };
