@@ -22,13 +22,13 @@ public:
         }
         ListNode*curr=prev->next;
         for(int i=1;i<=right-left;i++){
-             ListNode* temp = curr->next;
+             ListNode* temp = prev->next;
 
-            curr->next = temp->next;
+            prev->next = curr->next;
 
-            temp->next = prev->next;
+            curr->next = curr->next->next;
 
-            prev->next = temp;
+            prev->next->next = temp;
         }
         return dummy->next;
     }
