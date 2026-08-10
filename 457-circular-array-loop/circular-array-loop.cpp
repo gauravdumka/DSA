@@ -26,64 +26,54 @@
 
 class Solution {
 public:
+
+    int nextvalididx(int idx, bool curdir, vector<int>& nums, int n) {
+
+        int nxtidx = ((idx + nums[idx]) % n + n) % n;
+
+        bool nxtdir = nums[nxtidx] > 0;
+
+        // self-loop OR direction changed
+        if (idx == nxtidx || curdir != nxtdir) {
+            return -1;
+        }
+
+        return nxtidx;
+    }
+
     bool circularArrayLoop(vector<int>& nums) {
 
         int n = nums.size();
 
-        auto nextIndex = [&](int i) {
-            return ((i + nums[i]) % n + n) % n;
-        };
-
         for (int i = 0; i < n; i++) {
-
-            bool direction = nums[i] > 0;
 
             int slow = i;
             int fast = i;
 
+            // Direction of the starting element
+            bool curdir = nums[i] > 0;
+
             while (true) {
 
-                // Move slow one step
-                int nextSlow = nextIndex(slow);
+                // slow moves 1 step
+                slow = nextvalididx(slow, curdir, nums, n);
 
-                // Direction changed
-                if ((nums[nextSlow] > 0) != direction)
+                if (slow == -1)
                     break;
 
-                // One-element cycle
-                if (nextSlow == slow)
+                // fast moves 1st step
+                fast = nextvalididx(fast, curdir, nums, n);
+
+                if (fast == -1)
                     break;
 
-                slow = nextSlow;
+                // fast moves 2nd step
+                fast = nextvalididx(fast, curdir, nums, n);
 
-
-                // Move fast one step
-                int nextFast = nextIndex(fast);
-
-                // Direction changed
-                if ((nums[nextFast] > 0) != direction)
+                if (fast == -1)
                     break;
 
-                // One-element cycle
-                if (nextFast == fast)
-                    break;
-
-
-                // Move fast second step
-                int nextFast2 = nextIndex(nextFast);
-
-                // Direction changed
-                if ((nums[nextFast2] > 0) != direction)
-                    break;
-
-                // One-element cycle
-                if (nextFast2 == nextFast)
-                    break;
-
-                fast = nextFast2;
-
-
-                // Cycle found
+                // cycle found
                 if (slow == fast)
                     return true;
             }
