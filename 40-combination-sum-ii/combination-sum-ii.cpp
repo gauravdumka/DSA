@@ -5,7 +5,7 @@ public:
             ans.push_back(temp);
             return;
         }
-        // if(idx==arr.size()){
+        // if(idx>=arr.size()){  //// this part is not necessary bcz loop handles this condition
         //     return;
         // }
         for(int i=idx;i<arr.size();i++){
