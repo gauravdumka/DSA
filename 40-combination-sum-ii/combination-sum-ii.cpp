@@ -5,9 +5,9 @@ public:
             ans.push_back(temp);
             return;
         }
-        if(idx==arr.size()){
-            return;
-        }
+        // if(idx==arr.size()){
+        //     return;
+        // }
         for(int i=idx;i<arr.size();i++){
             if((i>idx) && (arr[i]==arr[i-1]))continue;
             if(arr[i]>target)break;
