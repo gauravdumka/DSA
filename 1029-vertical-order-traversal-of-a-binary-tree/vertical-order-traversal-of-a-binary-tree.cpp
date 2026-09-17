@@ -26,14 +26,29 @@ public:
             if(node->right) todo.push({node->right,{x+1,y+1}});
            
         }
-         vector<vector<int>>ans;
-            for(auto p:nodes){
-                vector<int>col;
-                for(auto q: p.second){
-                    col.insert(col.end(),q.second.begin(),q.second.end());
+        //  vector<vector<int>>ans;
+        //     for(auto p:nodes){
+        //         vector<int>col;
+        //         for(auto q: p.second){
+        //             col.insert(col.end(),q.second.begin(),q.second.end());
+        //         }
+        //         ans.push_back(col);
+        //     }
+        vector<vector<int>> ans;
+
+        for(auto p : nodes) {
+
+            vector<int> col;
+
+            for(auto q : p.second) {
+
+                for(auto value : q.second) {
+                    col.push_back(value);
                 }
-                ans.push_back(col);
             }
+
+            ans.push_back(col);
+        }
         return ans;
     }
 };
